@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 
 class MainController extends AbstractController
 {
-    #[Route('/main', name: 'main')]
+    #[Route('/', name: 'main')]
     public function index(PersistenceManagerRegistry $doctrine): Response
     {
         $data = $doctrine->getRepository(Zkouska::class)->findAll();
@@ -70,9 +70,19 @@ class MainController extends AbstractController
         $em->flush();
 
         $this->addFlash('notice','Successsufull!!');
-        
+
         return $this->redirectToRoute('main');
 
+    }
+
+
+    #[Route("/info/{id}", name:"info")]
+    public function info($id, PersistenceManagerRegistry $doctrine): Response
+    {
+        $data = $doctrine->getRepository(Zkouska::class)->find($id);
+        return $this->render('main/info.html.twig', [
+            'list' => $data
+        ]);
     }
 
 }

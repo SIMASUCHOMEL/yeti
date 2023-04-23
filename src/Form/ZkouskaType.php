@@ -12,8 +12,16 @@ class ZkouskaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('content')
+            ->add('jmeno')
+            ->add('informace')
+            ->add('height')
+            ->add('weight')
+            ->add('frajer')
+            ->add('smradoch')
+            ->add('img')
+
+
+
         ;
     }
 

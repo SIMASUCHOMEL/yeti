@@ -9,19 +9,39 @@
                 {{ message }}
             </div>
         {% endfor %}
-        <div class="col-md-6 offse-md-3">
+        <div class="col-md-6 offset-md-3">
             {{ form_start(form) }}
-               <div class="form-group">
-                    {{ form_label(form.title)}}
-                    {{ form_widget(form.title,{'attr':{'class':'form-controll'}})}}
-               </div>
                 <div class="form-group">
-                    {{ form_label(form.content)}}
-                    {{ form_widget(form.content,{'attr':{'class':'form-controll'}})}}
-               </div>
-               <div class="form-group">
+                    {{ form_label(form.jmeno)}}
+                    {{ form_widget(form.jmeno,{'attr':{'class':'form-controll'}})}}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.informace)}}
+                    {{ form_widget(form.informace,{'attr':{'class':'form-controll'}})}}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.height)}}
+                    {{ form_widget(form.height,{'attr':{'class':'form-controll'}})}}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.weight)}}
+                    {{ form_widget(form.weight,{'attr':{'class':'form-controll'}})}}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.img)}}
+                    {{ form_widget(form.img,{'attr':{'class':'form-controll'}})}}
+                </div>  
+                <div class="form-group">
+                    {{ form_label(form.frajer)}}
+                    {{ form_widget(form.frajer,{'submitted':{'class':'form-controll'}})}}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.smradoch)}}
+                    {{ form_widget(form.smradoch,{'submitted':{'class':'form-controll'}})}}
+                </div>
+                <div class="form-group">
                     <button class="btn btn-info mt-2 text-white">Update</button>
-               </div>               
+                </div>               
             {{ form_end(form) }}
         </div>
     </div>
