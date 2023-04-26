@@ -16,8 +16,11 @@ class MainController extends AbstractController
     public function index(PersistenceManagerRegistry $doctrine): Response
     {
         $data = $doctrine->getRepository(Zkouska::class)->findAll();
+        #ziska posledni z db ===> random(1, tady)
+        $GetLastNumber = $doctrine->getRepository(Zkouska::class)->findOneBy([], ['id' => 'desc']);
         return $this->render('main/index.html.twig', [
-            'list' => $data
+            'list' => $data,
+            'last' => $GetLastNumber
         ]);
     }
 

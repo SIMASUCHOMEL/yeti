@@ -22,6 +22,7 @@
   </thead>
   <div class="form-group">
     <a class="btn btn-primary text-white" href="/create">Create new</a>
+    <a class="btn btn-primary text-red" href="/explore/{{random(1, last.id)}}">Explore</a>
   </div>
   <tbody>
   {% for data in list %}
