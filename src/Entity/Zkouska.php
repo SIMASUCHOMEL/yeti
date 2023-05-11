@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ZkouskaRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ZkouskaRepository::class)]
@@ -33,6 +34,12 @@ class Zkouska
 
     #[ORM\Column(length: 500)]
     private ?string $img = null;
+
+    #[ORM\Column()]
+    private ?int $hodnoceni = 0;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $datum = null;
 
     public function getId(): ?int
     {
@@ -119,6 +126,30 @@ class Zkouska
     public function setImg(string $img): self
     {
         $this->img = $img;
+
+        return $this;
+    }
+
+    public function getHodnoceni(): ?int
+    {
+        return $this->hodnoceni;
+    }
+
+    public function setHodnoceni(int $hodnoceni): self
+    {
+        $this->hodnoceni = $hodnoceni;
+
+        return $this;
+    }
+
+    public function getDatum(): ?\DateTimeInterface
+    {
+        return $this->datum;
+    }
+
+    public function setDatum(?\DateTimeInterface $datum): self
+    {
+        $this->datum = $datum;
 
         return $this;
     }

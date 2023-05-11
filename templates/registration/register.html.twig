@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registrace{% endblock %}
+
+{% block body %}
+    <h1 id="top">Yetinder</h1>
+    <br></br>
+    <h1>Registrace</h1>
+    <style>
+        h1{
+            text-align: center;
+            padding: 2rem;
+ 
+        }
+        form{
+            text-align: center;
+        }
+        div{
+            padding: 30px;
+        }    
+        label{
+            padding-right: 5px
+        }
+        #top{
+            font-size:70px;
+            font-weight:bold;
+            background-color: beige;
+        }
+    </style>
+
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.username) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+
+        <button type="submit" class="btn">Registrovat se</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

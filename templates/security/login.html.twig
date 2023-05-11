@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<header>
+    <h1 id="top">Yetinder</h1>
+    <style>
+        h1{
+            text-align: center;
+            padding: 2rem;
+ 
+        }
+        form{
+            position: absolute;
+            left: 40%;
+            text-align: center;
+            width:20%
+        }
+        div{
+            padding: 30px;
+        }    
+        label{
+            padding-right: 5px
+        }
+        #top{
+            font-size:70px;
+            font-weight:bold;
+            background-color: beige;
+        }
+        #bot{
+            text-align:center;
+            font-weight:bold;
+        }
+    </style>
+</header>
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            Příhlášen jako {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Odhlásit se</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Přihlaste se</h1>
+    <label for="inputUsername">Jméno</label>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+    <label for="inputPassword">Heslo</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Přihlásit se
+    </button>
+    <div id="bot">
+        <a href="/register">Nemáte účet? Založte si ho!</a>
+    </div>
+</form>
+
+
+{% endblock %}
