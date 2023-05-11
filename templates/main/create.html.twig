@@ -3,8 +3,8 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <h3 class="mt-5 mb-5">Create form</h3>
-              <div class="col-md-6 offset-md-3">
+        <h3 class="mt-5 mb-5 text-center">Vytvořit nového</h3>
+              <div class="col-md-6 offset-md-3 p-5 bg-light text-center">
             {{ form_start(form) }}
                <div class="form-group">
                     {{ form_label(form.jmeno)}}
@@ -35,7 +35,7 @@
                     {{ form_widget(form.smradoch,{'submitted':{'class':'form-controll'}})}}
                </div>
                <div class="form-group">
-                    <button class="btn btn-info mt-2 text-white">Submit</button>
+                    <button class="btn btn-info mt-2 text-white">Vytvořit!</button>
                </div>               
             {{ form_end(form) }}
         </div>

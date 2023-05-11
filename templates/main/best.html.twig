@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+  h1{
+    text-align:center;
+    font-size:70px;
+    font-weight: 900;  
+    }
+  tr:first-child {
+    background-color:gold;
+    }
+</style>
+<header>
+    <h1>
+    Best Of Yeti
+    </h1>
+</header>
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-success mt-4 mb-b">
+            {{ message }}
+        </div>
+    {% endfor %}
+<div class="container bg-light">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Jméno</th>
+      <th scope="col">Informace</th>
+      <th scope="col">Hodnocení</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <div class="form-group">
+    <a class="btn btn-primary text-white" href="/create">Vytvořte nového</a>
+    <a class="btn btn-success text-white" href="/explore">YETINDER</a>
+    <a class="btn btn-secondary text-white" href="/all">Všichni Yeti</a>
+    <div class="position-absolute top-0 end-0 border border-dark p-5 bg-dark">
+      <a href="/logout" class="badge badge-dark">Odhlásit</a>
+    </div>
+  </div>
+  <tbody>
+  {% for data in list_best %}
+    <tr>
+      <th scope="row"><img class="nahled" src="/images/{{data.img}}" alt="{{ data.id }}"></th>
+      <td>{{ data.jmeno }}</td>
+      <td>{{ data.informace }}</td>
+      <td class="text-center font-weight-bold">{{ data.hodnoceni }}</td>
+      <td>
+        <a class="btn btn-warning" href="{{path("update",{'id': data.id })}}">Změnit</a>
+        <a class="btn btn-danger" href="{{path("delete",{'id': data.id })}}">Odstranit</a>
+        <a class="btn btn-info text-white" href="{{path("info",{'id': data.id })}}">Více informací</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

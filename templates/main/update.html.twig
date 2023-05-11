@@ -3,13 +3,13 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <h3 class="mt-5 mb-5">Update form</h3>
+        <h3 class="mt-5 mb-5 text-center">Změnit</h3>
         {% for message in app.flashes('notice') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-6 offset-md-3 text-center bg-warning p-5">
             {{ form_start(form) }}
                 <div class="form-group">
                     {{ form_label(form.jmeno)}}
@@ -40,7 +40,7 @@
                     {{ form_widget(form.smradoch,{'submitted':{'class':'form-controll'}})}}
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-info mt-2 text-white">Update</button>
+                    <button class="btn btn-info mt-2 text-white">Změnit</button>
                 </div>               
             {{ form_end(form) }}
         </div>

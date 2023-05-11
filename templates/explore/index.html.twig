@@ -1,29 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<style>
+  h1{
+    text-align:center;
+    font-size:70px;
+    font-weight: 900;  
+    }
+</style>
+<header>
+    <h1>{{ list.jmeno }}</h1>
+</header>
 <div class="container">
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Informace</th>
-      <th scope="col">Height</th>
-      <th scope="col">Weight</th>
+      <th scope="col">Výška</th>
+      <th scope="col">Váha</th>
       <th scope="col">Frajer</th>
       <th scope="col">Smradoch</th>
     </tr>
   </thead>
   <div class="form-group">
-    <a class="btn btn-info text-white" href="{{path("main")}}">Back to main</a>
+    <a class="btn btn-info text-white" href="{{path("main")}}">Zpět na hlavní stranu</a>
   </div> 
   <tbody>
+     <div>
+      <img class="img-thumbnail" src="/images/{{list.img}}" alt="{{list.jmeno}}">
+    </div>
     <tr>
       <th scope="row">{{ list.id }}</th>
-      <h1>{{ list.jmeno }}</h1>
       <td>{{ list.informace }}</td>
       <td>{{ list.height }} cm</td>
       <td>{{ list.weight }} kg</td>
-      <img class="img-thumbnail" src="{{list.img}}" alt="{{list.jmeno}}">
       <td> 
         {% if list.frajer == true %}
           Frajer
@@ -33,7 +44,7 @@
       </td>
       <td> 
         {% if list.smradoch == true %}
-          Smradoch
+          Smraďoch
         {% else %}
           X
         {% endif %}
@@ -42,9 +53,9 @@
   </tbody>
 </table>
 </div>
-<div class="form-group">
-  <button class="btn btn-info mt-2 text-white">+1</button>
-  <a class="btn btn-primary text-red" href="/explore/{{random(1, list.id)}}">-1</a>
+<div class="text-center">
+  <a class="btn btn-success p-5 m-1" href="/hodnoceni/plus/{{list.id}}">+1</a>
+  <a class="btn btn-danger p-5 m-1" href="/hodnoceni/minus/{{list.id}}">-1</a>
 
 
 </div>

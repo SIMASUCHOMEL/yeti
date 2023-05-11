@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+  h1{
+    text-align:center;
+    font-size:70px;
+    font-weight: 900;  
+    }
+</style>
+<header>
+    <h1>
+    ALL
+    </h1>
+</header>
+<div class="container">
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Jméno</th>
+      <th scope="col">Informace</th>
+      <th scope="col">Hodnocení</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <div class="form-group">
+    <a class="btn btn-primary text-white" href="/create">Přidejte nového</a>
+    <a class="btn btn-info text-white" href="/">Zpět na hlávní stranu</a>
+  </div>
+  <tbody>
+  {% for data in list %}
+    <tr>
+      <th scope="row"><img class="nahled" src="/images/{{data.img}}" alt="{{ data.id }}"></th>
+      <td>{{ data.jmeno }}</td>
+      <td>{{ data.informace }}</td>
+      <td class="text-center font-weight-bold">{{ data.hodnoceni }}</td>
+      <td>
+        <a class="btn btn-warning" href="{{path("update",{'id': data.id })}}">Změnit</a>
+        <a class="btn btn-danger" href="{{path("delete",{'id': data.id })}}">Odstranit</a>
+        <a class="btn btn-info text-white" href="{{path("info",{'id': data.id })}}">Více informací</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}
