@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistika{% endblock %}
+
+{% block body %}
+    <h1 class="text-center display-1">Statistiky</h1>
+    <a class="btn btn-info text-white" href="{{path("main")}}">Zpět na hlavní stranu</a>
+
+    {{ render_chart(graf) }}
+
+{% endblock %}
