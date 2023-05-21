@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 class ExploreController extends AbstractController
 {
@@ -51,6 +53,52 @@ public function explore(PersistenceManagerRegistry $doctrine): Response
     } else {
         return $this->redirectToRoute('ex');
     }
+}
+
+#[Route('/stats', name:'stats')]
+public function stats(ChartBuilderInterface $builder, PersistenceManagerRegistry $doctrine) :Response
+{
+
+    $best = $doctrine->getRepository(Zkouska::class)->findBy([], ['hodnoceni' => 'desc'], 10);
+    $jmena = [];
+    foreach ($best as $graf){
+        $jmena[] = $graf->getJmeno();
+    }
+
+    $hodnoceni = [];
+    foreach ($best as $graf){
+        $hodnoceni[] = $graf->getHodnoceni();
+    }
+
+    $grafik = $builder->createChart(Chart::TYPE_BAR);
+
+    $grafik->setData([
+        'labels' => $jmena,
+        'left' => 'Likes',
+        'datasets' => [
+            [
+                'label' => 'TOP 10 HODNOCENí YETI',
+                'backgroundColor' => 'rgb(233,150,122)',
+                'borderColor' => '	rgb(0,0,0)',
+                'data' => $hodnoceni,
+
+            ],
+        ],
+    ]);
+    $grafik->setOptions([
+        'scales' => [
+            'y' => [
+                'suggestedMin' => 0,
+            ],
+        ],
+    ]);
+
+
+
+
+    return $this->render('explore/stats.html.twig', [
+        'graf' => $grafik,
+    ]);
 }
 
 }

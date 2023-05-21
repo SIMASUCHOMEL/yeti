@@ -38,6 +38,8 @@ security:
          - { path: ^/delete/*, roles: ROLE_USER }
          - { path: ^/info/*, roles: ROLE_USER }
          - { path: ^/all, roles: ROLE_USER }
+         - { path: ^/stats, roles: ROLE_USER }
+
 
         # - { path: ^/profile, roles: ROLE_USER }
 
