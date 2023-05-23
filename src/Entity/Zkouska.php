@@ -38,8 +38,14 @@ class Zkouska
     #[ORM\Column()]
     private ?int $hodnoceni = 0;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $datum = null;
+
+    #[ORM\Column]
+    private ?bool $chytrak = null;
+
+    #[ORM\Column]
+    private ?bool $slusnak = null;
 
     public function getId(): ?int
     {
@@ -150,6 +156,30 @@ class Zkouska
     public function setDatum(?\DateTimeInterface $datum): self
     {
         $this->datum = $datum;
+
+        return $this;
+    }
+
+    public function isChytrak(): ?bool
+    {
+        return $this->chytrak;
+    }
+
+    public function setChytrak(bool $chytrak): self
+    {
+        $this->chytrak = $chytrak;
+
+        return $this;
+    }
+
+    public function isSlusnak(): ?bool
+    {
+        return $this->slusnak;
+    }
+
+    public function setSlusnak(bool $slusnak): self
+    {
+        $this->slusnak = $slusnak;
 
         return $this;
     }

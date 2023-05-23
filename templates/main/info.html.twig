@@ -21,6 +21,10 @@
       <th scope="col">Váha</th>
       <th scope="col">Frajer</th>
       <th scope="col">Smradoch</th>
+      <th scope="col">Slušńák</th>
+      <th scope="col">Chytrák</th>
+
+      <th scope="col">Datum narození</th>
     </tr>
   </thead>
   <div class="form-group">
@@ -39,7 +43,7 @@
       <td>{{ list.informace }}</td>
       <td>{{ list.height }} cm</td>
       <td>{{ list.weight }} kg</td>
-      <td> 
+      <td>
         {% if list.frajer == true %}
           Frajer
         {% else %}
@@ -52,7 +56,23 @@
         {% else %}
           X
         {% endif %}
-      </td>      
+      </td>
+      <td>
+        {% if list.slusnak == true %}
+          Slušńák
+        {% else %}
+          X
+        {% endif %}
+      </td>
+      <td>
+        {% if list.chytrak == true %}
+          Chytrák
+        {% else %}
+          X
+        {% endif %}
+      </td>
+      <td>{{ list.datum|date('d. M Y') }}</td>
+
 
       <td>
         <a class="btn btn-warning" href="{{path("update",{'id': list.id })}}">Změnit</a>

@@ -21,6 +21,9 @@
       <th scope="col">Váha</th>
       <th scope="col">Frajer</th>
       <th scope="col">Smradoch</th>
+      <th scope="col">Slušńák</th>
+      <th scope="col">Chytrák</th>
+      <th scope="col">Datum narození</th>
     </tr>
   </thead>
   <div class="form-group">
@@ -48,7 +51,22 @@
         {% else %}
           X
         {% endif %}
-      </td>      
+      </td>
+       <td>
+        {% if list.slusnak == true %}
+          Slušńák
+        {% else %}
+          X
+        {% endif %}
+      </td>
+      <td>
+        {% if list.chytrak == true %}
+          Chytrák
+        {% else %}
+          X
+        {% endif %}
+      </td>
+      <td>{{ list.datum|date('d. M Y') }}</td>
     </tr>
   </tbody>
 </table>

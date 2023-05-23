@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Zkouska;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,12 +20,19 @@ class ZkouskaType extends AbstractType
             ->add('weight')
             ->add('frajer')
             ->add('smradoch')
+            ->add('chytrak')
+            ->add('slusnak')
             ->add('img', FileType::class, [
                 'mapped' => false,
                 'label' => 'Vyberte obrázek',
                 'attr' => [
                 'accept' => 'image/*'
                 ],
+            ])
+            ->add( 'datum', BirthdayType::class,[
+                'label' => 'Datum narození',
+                'format' => 'dd-MMM-yyyy'
+              //  'years' => range(Date('Y'), 1960),
             ])
   
 
