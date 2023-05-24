@@ -29,6 +29,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column]
+    private ?int $frajer = null;
+
+    #[ORM\Column]
+    private ?int $smradoch = null;
+
+    #[ORM\Column]
+    private ?int $chytrak = null;
+
+    #[ORM\Column]
+    private ?int $slusnak = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -97,5 +109,53 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFrajer(): ?int
+    {
+        return $this->frajer;
+    }
+
+    public function setFrajer(int $frajer): self
+    {
+        $this->frajer = $frajer;
+
+        return $this;
+    }
+
+    public function getSmradoch(): ?int
+    {
+        return $this->smradoch;
+    }
+
+    public function setSmradoch(int $smradoch): self
+    {
+        $this->smradoch = $smradoch;
+
+        return $this;
+    }
+
+    public function getChytrak(): ?int
+    {
+        return $this->chytrak;
+    }
+
+    public function setChytrak(int $chytrak): self
+    {
+        $this->chytrak = $chytrak;
+
+        return $this;
+    }
+
+    public function getSlusnak(): ?int
+    {
+        return $this->slusnak;
+    }
+
+    public function setSlusnak(int $slusnak): self
+    {
+        $this->slusnak = $slusnak;
+
+        return $this;
     }
 }

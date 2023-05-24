@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Zkouska;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,7 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
-use App\Entity\User;
 use DateTime;
 
 
@@ -41,22 +41,103 @@ public function explore(PersistenceManagerRegistry $doctrine): Response
     public function action($action, $id, PersistenceManagerRegistry $doctrine)
 {
     $repository = $doctrine->getRepository(Zkouska::class)->find($id);
+
+    $frajer = $repository->isFrajer();
+    $smradoch = $repository->isSmradoch();
+    $chytrak = $repository->isChytrak();
+    $slusnak = $repository->isSlusnak();
     if ($action === 'plus'){
         $repository->setHodnoceni($repository->getHodnoceni() + 1);
         $em = $doctrine->getManager();  
         $em->persist($repository);
         $em->flush();
-        return $this->redirectToRoute('ex');
+        if ($frajer === true) {
+            $user = $this->getUser();
+            $userId = $user->getId();
+            $repo = $doctrine->getRepository(User::class)->find($userId);
+            $repo->setFrajer($repo->getFrajer() + 1);
+            $em = $doctrine->getManager();
+            $em->persist($repo);
+            $em->flush();
+        }
+        if ($smradoch === true) {
+            $user = $this->getUser();
+            $userId = $user->getId();
+            $repo = $doctrine->getRepository(User::class)->find($userId);
+            $repo->setSmradoch($repo->getSmradoch() + 1);
+            $em = $doctrine->getManager();
+            $em->persist($repo);
+            $em->flush();
+        }
+        if ($chytrak === true) {
+            $user = $this->getUser();
+            $userId = $user->getId();
+            $repo = $doctrine->getRepository(User::class)->find($userId);
+            $repo->setChytrak($repo->getChytrak() + 1);
+            $em = $doctrine->getManager();
+            $em->persist($repo);
+            $em->flush();
+        }
+        if ($slusnak === true) {
+            $user = $this->getUser();
+            $userId = $user->getId();
+            $repo = $doctrine->getRepository(User::class)->find($userId);
+            $repo->setSlusnak($repo->getSlusnak() + 1);
+            $em = $doctrine->getManager();
+            $em->persist($repo);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('kdo');
+
 
     } else if ($action === 'minus') {
         $repository->setHodnoceni($repository->getHodnoceni() - 1);
         $em = $doctrine->getManager();  
         $em->persist($repository);
         $em->flush();
-        return $this->redirectToRoute('ex');
+
+        if ($frajer === true) {
+            $user = $this->getUser();
+            $userId = $user->getId();
+            $repo = $doctrine->getRepository(User::class)->find($userId);
+            $repo->setFrajer($repo->getFrajer() - 1);
+            $em = $doctrine->getManager();
+            $em->persist($repo);
+            $em->flush();
+        }
+        if ($smradoch === true) {
+            $user = $this->getUser();
+            $userId = $user->getId();
+            $repo = $doctrine->getRepository(User::class)->find($userId);
+            $repo->setSmradoch($repo->getSmradoch() - 1);
+            $em = $doctrine->getManager();
+            $em->persist($repo);
+            $em->flush();
+        }
+        if ($chytrak === true) {
+            $user = $this->getUser();
+            $userId = $user->getId();
+            $repo = $doctrine->getRepository(User::class)->find($userId);
+            $repo->setChytrak($repo->getChytrak() - 1);
+            $em = $doctrine->getManager();
+            $em->persist($repo);
+            $em->flush();
+        }
+        if ($slusnak === true) {
+            $user = $this->getUser();
+            $userId = $user->getId();
+            $repo = $doctrine->getRepository(User::class)->find($userId);
+            $repo->setSlusnak($repo->getSlusnak() - 1);
+            $em = $doctrine->getManager();
+            $em->persist($repo);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('kdo');
 
     } else {
-        return $this->redirectToRoute('ex');
+        return $this->redirectToRoute('kdo');
     }
 }
 
