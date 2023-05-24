@@ -22,51 +22,56 @@ class AlgorithmController extends AbstractController
             $smradoch = $repo->getSmradoch();
             $chytrak = $repo->getChytrak();
             $slusnak = $repo->getSlusnak();
+            $rozhodnuti = random_int(1, 10);
 
-            if ($frajer > $smradoch && $frajer > $chytrak && $frajer > $slusnak){
-                $repository = $doctrine->getRepository(Zkouska::class)->findBy(['frajer' => true]);
+            if ($rozhodnuti > 4){
+                return $this->redirectToRoute('ex');
+            }else {
+
+                if ($frajer > $smradoch && $frajer > $chytrak && $frajer > $slusnak) {
+                    $repository = $doctrine->getRepository(Zkouska::class)->findBy(['frajer' => true]);
                     $random = $repository[array_rand($repository)];
                     if ($random) {
                         $randomId = $random->getId();
-                    return $this->redirectToRoute('explore', ['id' => $randomId]);
-                    }else{
+                        return $this->redirectToRoute('explore', ['id' => $randomId]);
+                    } else {
                         return $this->redirectToRoute('/explore');
                     }
 
-            }elseif ($smradoch > $frajer && $smradoch > $chytrak && $smradoch > $slusnak){
-                $repository = $doctrine->getRepository(Zkouska::class)->findBy(['smradoch' => true]);
+                } elseif ($smradoch > $frajer && $smradoch > $chytrak && $smradoch > $slusnak) {
+                    $repository = $doctrine->getRepository(Zkouska::class)->findBy(['smradoch' => true]);
                     $random = $repository[array_rand($repository)];
                     if ($random) {
                         $randomId = $random->getId();
-                    return $this->redirectToRoute('explore', ['id' => $randomId]);
-                    }else{
+                        return $this->redirectToRoute('explore', ['id' => $randomId]);
+                    } else {
                         return $this->redirectToRoute('/explore');
                     }
 
-            }elseif ($chytrak > $frajer && $chytrak > $smradoch && $chytrak > $slusnak){
-                $repository = $doctrine->getRepository(Zkouska::class)->findBy(['chytrak' => true]);
+                } elseif ($chytrak > $frajer && $chytrak > $smradoch && $chytrak > $slusnak) {
+                    $repository = $doctrine->getRepository(Zkouska::class)->findBy(['chytrak' => true]);
                     $random = $repository[array_rand($repository)];
                     if ($random) {
                         $randomId = $random->getId();
-                    return $this->redirectToRoute('explore', ['id' => $randomId]);
-                    }else{
+                        return $this->redirectToRoute('explore', ['id' => $randomId]);
+                    } else {
                         return $this->redirectToRoute('/explore');
                     }
 
-            }elseif ($slusnak > $frajer && $slusnak > $smradoch && $slusnak > $chytrak){
-                $repository = $doctrine->getRepository(Zkouska::class)->findBy(['slusnak' => true]);
+                } elseif ($slusnak > $frajer && $slusnak > $smradoch && $slusnak > $chytrak) {
+                    $repository = $doctrine->getRepository(Zkouska::class)->findBy(['slusnak' => true]);
                     $random = $repository[array_rand($repository)];
                     if ($random) {
                         $randomId = $random->getId();
-                    return $this->redirectToRoute('explore', ['id' => $randomId]);
-                    }else{
+                        return $this->redirectToRoute('explore', ['id' => $randomId]);
+                    } else {
                         return $this->redirectToRoute('ex');
                     }
 
-            }else{
-                return $this->redirectToRoute('ex');
-            };
-
+                } else {
+                    return $this->redirectToRoute('ex');
+                }
+            }
 
 
     }

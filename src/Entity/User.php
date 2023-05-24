@@ -30,16 +30,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column]
-    private ?int $frajer = null;
+    private ?int $frajer = 0;
 
     #[ORM\Column]
-    private ?int $smradoch = null;
+    private ?int $smradoch = 0;
 
     #[ORM\Column]
-    private ?int $chytrak = null;
+    private ?int $chytrak = 0;
 
     #[ORM\Column]
-    private ?int $slusnak = null;
+    private ?int $slusnak = 0;
 
     public function getId(): ?int
     {
